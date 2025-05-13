@@ -32,10 +32,12 @@ public class FirstFragment extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        binding.buttonFirst.setOnClickListener(v ->
-                NavHostFragment.findNavController(FirstFragment.this)
-                        .navigate(R.id.action_FirstFragment_to_SecondFragment)
-        );
+        StringBuilder moodLog = new StringBuilder();
+        for (String mood: MoodStore.getMoods()) {
+            moodLog.append("\u2022").append(mood).append("\n");
+        }
+
+        binding.textviewFirst.setText(moodLog.toString());
     }
 
     @Override

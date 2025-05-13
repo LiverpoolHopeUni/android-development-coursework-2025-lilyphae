@@ -39,9 +39,8 @@ public class MainActivity extends AppCompatActivity {
         binding.fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAnchorView(R.id.fab)
-                        .setAction("Action", null).show();
+                NavController navController = Navigation.findNavController(MainActivity.this, R.id.nav_host_fragment_content_main);
+                navController.navigate(R.id.action_FirstFragment_to_SecondFragment);
             }
         });
     }

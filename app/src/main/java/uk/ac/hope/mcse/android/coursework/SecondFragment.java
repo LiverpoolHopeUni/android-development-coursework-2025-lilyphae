@@ -26,13 +26,36 @@ public class SecondFragment extends Fragment {
 
     }
 
+    @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        binding.buttonSecond.setOnClickListener(v ->
+        binding.saveMoodButton.setOnClickListener(v -> {
+            int selectedId = binding.moodRadioGroup.getCheckedRadioButtonId();
+            String mood = "";
+            if (selectedId != -1) {
+                switch (selectedId) {
+                    case R.id.radioHappy:
+                        mood = "Happy";
+                        break;
+                    case R.id.radioSad:
+                        mood = "Sad";
+                        break;
+                    case R.id.radioAngry:
+                        mood = "Angry";
+                        break;
+                    case R.id.radioNeutral:
+                        mood = "neutral";
+                        break;
+                }
+
+
+                MoodStore.addMood(mood);
+
                 NavHostFragment.findNavController(SecondFragment.this)
-                        .navigate(R.id.action_SecondFragment_to_FirstFragment)
-        );
+                        .navigate(R.id.action_SecondFragment_to_FirstFragment);
+            }
+        });
     }
 
     @Override
