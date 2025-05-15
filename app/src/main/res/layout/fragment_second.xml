@@ -19,10 +19,30 @@
         android:layout_height="wrap_content">
 
 
-        <radioButton android:id="@+id/radioHappy" android:text="Happy" />
-        <radioButton android:id="@+id/radioSad" android:text="Sad" />
-        <radioButton android:id="@+id/radioAngry" android:text="Angry" />
-        <radioButton android:id="@+id/radioNeutral" android:text="Neutral" />
+        <RadioButton
+            android:id="@+id/radioHappy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Happy" />
+
+        <RadioButton
+            android:id="@+id/radioSad"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sad" />
+
+        <RadioButton
+            android:id="@+id/radioAngry"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Angry" />
+
+        <RadioButton
+            android:id="@+id/radioNeutral"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Neutral" />
+
     </RadioGroup>
 
     <Button
