@@ -1,18 +1,55 @@
 package uk.ac.hope.mcse.android.coursework;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 public class MoodStore {
-    private static final List<String> moodList = new ArrayList<>();
 
-    public static void addMood(String mood) {
+    public static class MoodEntry {
+        public String mood;
+        public long timestamp;
 
-        moodList.add(0, mood);
+        public MoodEntry(String mood, long timestamp) {
+            this.mood = mood;
+            this.timestamp = timestamp;
+        }
+
+        public String getFormattedDate() {
+            return new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date(timestamp));
+        }
+
+        public String getFormattedTime() {
+            String formatted = new SimpleDateFormat("HH:mm", Locale.getDefault()).format(new Date(timestamp));
+            Log.d("MoodStore", "Formatted time: " + formatted);
+            return formatted;
+        }
     }
 
-    public static List<String> getMoods() {
+    private static final List<MoodEntry> moodList = new ArrayList<>();
 
+    public static void addMood(String mood) {
+        MoodEntry entry = new MoodEntry(mood, System.currentTimeMillis());
+        moodList.add(0, entry);
+        Log.d("MoodStore", "Saved: " + mood + " at " + entry.getFormattedTime());
+    }
+
+    public static List<MoodEntry> getAllMoods() {
         return moodList;
+    }
+
+    public static List<MoodEntry> getTodaysMoods() {
+        String today = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date());
+        List<MoodEntry> todayList = new ArrayList<>();
+        for (MoodEntry entry : moodList) {
+            if (entry.getFormattedDate().equals(today)) {
+                todayList.add(entry);
+            }
+        }
+        return todayList;
     }
 }

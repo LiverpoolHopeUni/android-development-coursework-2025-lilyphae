@@ -57,7 +57,7 @@ public class SecondFragment extends Fragment {
 
 
                 MoodStore.addMood(mood);
-                Log.d("MoodStore", "Mood list size: " + MoodStore.getMoods().size());
+
 
                 NavHostFragment.findNavController(SecondFragment.this)
                         .navigate(R.id.action_SecondFragment_to_FirstFragment);

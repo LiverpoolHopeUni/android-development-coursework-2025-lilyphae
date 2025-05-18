@@ -2,6 +2,7 @@ package uk.ac.hope.mcse.android.coursework;
 
 import android.graphics.Color;
 import android.text.Layout;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,9 +17,9 @@ import java.util.List;
 
 public class MoodAdapter extends RecyclerView.Adapter<MoodAdapter.MoodViewHolder> {
 
-    private List<String> moodList;
+    private List<MoodStore.MoodEntry> moodList;
 
-    public MoodAdapter(List<String> moodList) {
+    public MoodAdapter(List<MoodStore.MoodEntry> moodList) {
         this.moodList = moodList;
     }
 
@@ -32,23 +33,30 @@ public class MoodAdapter extends RecyclerView.Adapter<MoodAdapter.MoodViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull MoodViewHolder holder, int position) {
-        String mood = moodList.get(position);
-        holder.moodText.setText(mood);
-
+        MoodStore.MoodEntry entry = moodList.get(position);
+        String mood = entry.mood;
+        String time = entry.getFormattedTime();
+        String displayText = time + " - ";
         int color = Color.LTGRAY;
+        Log.d("MoodAdapter", "Binding mood: " + entry.mood + " at " + entry.getFormattedTime());
 
 
         if ("happy".equalsIgnoreCase(mood)) {
             color = Color.parseColor("#A5D6A7");
+            displayText = time + " - \uD83D\uDE0A Happy";
         } else if ("sad".equalsIgnoreCase(mood)) {
             color = Color.parseColor("#90CAF9");
+            displayText = time + " - \uD83D\uDE22 Sad";
         } else if ("angry".equalsIgnoreCase(mood)) {
             color = Color.parseColor("#EF9A9A");
+            displayText = time + " - \uD83D\uDE20 Angry";
         } else if ("neutral".equalsIgnoreCase(mood)) {
             color = Color.parseColor("#FFF59D");
+            displayText = time + " - \uD83D\uDE10 Neutral";
         }
 
         holder.itemLayout.setBackgroundColor(color);
+        holder.moodText.setText(displayText);
     }
 
 

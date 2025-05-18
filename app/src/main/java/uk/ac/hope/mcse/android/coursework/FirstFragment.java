@@ -44,7 +44,7 @@ public class FirstFragment extends Fragment {
         );
 
         RecyclerView moodRecyclerView = view.findViewById(R.id.moodRecyclerView);
-        adapter = new MoodAdapter(MoodStore.getMoods());
+        adapter = new MoodAdapter(MoodStore.getTodaysMoods());
         moodRecyclerView.setAdapter(adapter);
         moodRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
