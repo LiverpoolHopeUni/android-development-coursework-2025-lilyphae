@@ -14,6 +14,10 @@
         <action
             android:id="@+id/action_FirstFragment_to_SecondFragment"
             app:destination="@id/SecondFragment" />
+
+        <action
+            android:id="@+id/action_FirstFragment_to_PastMoodsFragment"
+            app:destination="@id/PastMoodsFragment" />
     </fragment>
     <fragment
         android:id="@+id/SecondFragment"
@@ -24,5 +28,15 @@
         <action
             android:id="@+id/action_SecondFragment_to_FirstFragment"
             app:destination="@id/FirstFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/PastMoodsFragment"
+        android:name="uk.ac.hope.mcse.android.coursework.PastMoodsFragment"
+        android:label="Past Moods"
+        tools:layout="@layout/fragment_past_moods" >
+        <action
+            android:id="@+id/action_FirstFragment_to_PastMoodsFragment"
+            app:destination="@id/PastMoodsFragment" />
     </fragment>
 </navigation>

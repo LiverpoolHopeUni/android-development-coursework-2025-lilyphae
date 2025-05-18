@@ -40,7 +40,7 @@ public class FirstFragment extends Fragment {
         Button nextButton = view.findViewById(R.id.button_first);
         nextButton.setOnClickListener(v ->
                 NavHostFragment.findNavController(FirstFragment.this)
-                        .navigate(R.id.action_FirstFragment_to_SecondFragment)
+                        .navigate(R.id.action_FirstFragment_to_PastMoodsFragment)
         );
 
         RecyclerView moodRecyclerView = view.findViewById(R.id.moodRecyclerView);
