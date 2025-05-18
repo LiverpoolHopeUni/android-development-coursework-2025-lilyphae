@@ -4,46 +4,65 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.Arrays;
+import java.util.List;
 
 import uk.ac.hope.mcse.android.coursework.databinding.FragmentFirstBinding;
+
 
 /**
  *
  */
 public class FirstFragment extends Fragment {
 
-    private FragmentFirstBinding binding;
+    private MoodAdapter adapter;
 
     @Override
     public View onCreateView(
             @NonNull LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState
     ) {
-
-        binding = FragmentFirstBinding.inflate(inflater, container, false);
-        return binding.getRoot();
-
+        return inflater.inflate(R.layout.fragment_first, container, false);
     }
 
+    @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        StringBuilder moodLog = new StringBuilder();
-        for (String mood: MoodStore.getMoods()) {
-            moodLog.append("\u2022").append(mood).append("\n");
+        Button nextButton = view.findViewById(R.id.button_first);
+        nextButton.setOnClickListener(v ->
+                NavHostFragment.findNavController(FirstFragment.this)
+                        .navigate(R.id.action_FirstFragment_to_SecondFragment)
+        );
+
+        RecyclerView moodRecyclerView = view.findViewById(R.id.moodRecyclerView);
+        adapter = new MoodAdapter(MoodStore.getMoods());
+        moodRecyclerView.setAdapter(adapter);
+        moodRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        if (adapter != null) {
+            adapter.notifyDataSetChanged();
         }
 
-        binding.textviewFirst.setText(moodLog.toString());
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        binding = null;
     }
 
 }

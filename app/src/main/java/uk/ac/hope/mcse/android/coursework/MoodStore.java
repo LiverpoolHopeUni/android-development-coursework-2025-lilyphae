@@ -4,13 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MoodStore {
-    private static final List<String> moodEntries = new ArrayList<>();
+    private static final List<String> moodList = new ArrayList<>();
 
     public static void addMood(String mood) {
-        moodEntries.add(0, mood);
+
+        moodList.add(0, mood);
     }
 
     public static List<String> getMoods() {
-        return moodEntries;
+
+        return moodList;
     }
 }
