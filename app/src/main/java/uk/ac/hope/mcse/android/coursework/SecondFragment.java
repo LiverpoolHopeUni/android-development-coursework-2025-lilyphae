@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -32,17 +33,25 @@ public class SecondFragment extends Fragment {
         saveMoodButton.setOnClickListener(v -> {
             int selectedId = moodRadioGroup.getCheckedRadioButtonId();
             String mood = "";
+            String feedbackMessage = "";
 
             if (selectedId != -1) {
                 if (selectedId == R.id.radioHappy) {
                     mood = "Happy";
+                    feedbackMessage = "Glad you're feeling happy!";
                 } else if (selectedId == R.id.radioSad) {
                     mood = "Sad";
+                    feedbackMessage = "Sorry you're feeling sad.";
                 } else if (selectedId == R.id.radioAngry) {
                     mood = "Angry";
+                    feedbackMessage = "Take a deep breath, it's okay to be angry.";
                 } else if (selectedId == R.id.radioNeutral) {
                     mood = "Neutral";
+                    feedbackMessage = "Thanks for checking in.";
                 }
+
+                Toast.makeText(getContext(), feedbackMessage, Toast.LENGTH_SHORT).show();
+
 
                 MoodStore.addMood(mood);
                 Log.d("MoodStore", "Mood list size: " + MoodStore.getMoods().size());
