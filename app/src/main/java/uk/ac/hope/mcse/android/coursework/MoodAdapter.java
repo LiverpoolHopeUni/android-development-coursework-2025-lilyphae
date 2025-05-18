@@ -1,5 +1,6 @@
 package uk.ac.hope.mcse.android.coursework;
 
+import android.graphics.Color;
 import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,14 +26,31 @@ public class MoodAdapter extends RecyclerView.Adapter<MoodAdapter.MoodViewHolder
     @Override
     public MoodViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(android.R.layout.simple_list_item_1, parent, false);
+                .inflate(R.layout.item_mood, parent, false);
         return new MoodViewHolder(itemView);
     }
 
     @Override
     public void onBindViewHolder(@NonNull MoodViewHolder holder, int position) {
-        holder.moodText.setText(moodList.get(position));
+        String mood = moodList.get(position);
+        holder.moodText.setText(mood);
+
+        int color = Color.LTGRAY;
+
+
+        if ("happy".equalsIgnoreCase(mood)) {
+            color = Color.parseColor("#A5D6A7");
+        } else if ("sad".equalsIgnoreCase(mood)) {
+            color = Color.parseColor("#90CAF9");
+        } else if ("angry".equalsIgnoreCase(mood)) {
+            color = Color.parseColor("#EF9A9A");
+        } else if ("neutral".equalsIgnoreCase(mood)) {
+            color = Color.parseColor("#FFF59D");
+        }
+
+        holder.itemLayout.setBackgroundColor(color);
     }
+
 
     @Override
     public int getItemCount() {
@@ -41,10 +59,12 @@ public class MoodAdapter extends RecyclerView.Adapter<MoodAdapter.MoodViewHolder
 
     public static class MoodViewHolder extends RecyclerView.ViewHolder {
         TextView moodText;
+        View itemLayout;
 
         public MoodViewHolder(@NonNull View itemView) {
             super(itemView);
-            moodText = itemView.findViewById(android.R.id.text1);
+            moodText = itemView.findViewById(R.id.moodText);
+            itemLayout = itemView.findViewById(R.id.itemLayout);
 
         }
     }

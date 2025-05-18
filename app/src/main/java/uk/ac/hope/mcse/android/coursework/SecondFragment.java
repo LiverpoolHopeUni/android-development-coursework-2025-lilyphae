@@ -10,8 +10,10 @@ import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
+import androidx.core.content.ContextCompat;
 
 import uk.ac.hope.mcse.android.coursework.databinding.FragmentSecondBinding;
 
@@ -34,6 +36,7 @@ public class SecondFragment extends Fragment {
             int selectedId = moodRadioGroup.getCheckedRadioButtonId();
             String mood = "";
             String feedbackMessage = "";
+
 
             if (selectedId != -1) {
                 if (selectedId == R.id.radioHappy) {
