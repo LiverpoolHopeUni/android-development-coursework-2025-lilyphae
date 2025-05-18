@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/FirstFragment"
         android:name="uk.ac.hope.mcse.android.coursework.FirstFragment"
-        android:label="@string/first_fragment_label"
+        android:label="Today's Moods"
         tools:layout="@layout/fragment_first">
 
         <action
@@ -22,7 +22,7 @@
     <fragment
         android:id="@+id/SecondFragment"
         android:name="uk.ac.hope.mcse.android.coursework.SecondFragment"
-        android:label="@string/second_fragment_label"
+        android:label="Log Your Mood"
         tools:layout="@layout/fragment_second">
 
         <action
@@ -33,7 +33,7 @@
     <fragment
         android:id="@+id/PastMoodsFragment"
         android:name="uk.ac.hope.mcse.android.coursework.PastMoodsFragment"
-        android:label="Past Moods"
+        android:label="Past Mood History"
         tools:layout="@layout/fragment_past_moods" >
         <action
             android:id="@+id/action_FirstFragment_to_PastMoodsFragment"
