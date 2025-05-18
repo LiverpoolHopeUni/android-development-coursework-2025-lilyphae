@@ -38,7 +38,8 @@ public class MoodAdapter extends RecyclerView.Adapter<MoodAdapter.MoodViewHolder
         String time = entry.getFormattedTime();
         String displayText = time + " - ";
         int color = Color.LTGRAY;
-        Log.d("MoodAdapter", "Binding mood: " + entry.mood + " at " + entry.getFormattedTime());
+        Log.d("MoodAdapter", "Binding mood: " + entry.mood + ", note: " + entry.note);
+
 
 
         if ("happy".equalsIgnoreCase(mood)) {
@@ -53,6 +54,11 @@ public class MoodAdapter extends RecyclerView.Adapter<MoodAdapter.MoodViewHolder
         } else if ("neutral".equalsIgnoreCase(mood)) {
             color = Color.parseColor("#FFF59D");
             displayText = time + " - \uD83D\uDE10 Neutral";
+        }
+
+
+        if (entry.note != null && !entry.note.trim().isEmpty()) {
+            displayText += "\n " + entry.note.trim();
         }
 
         holder.itemLayout.setBackgroundColor(color);

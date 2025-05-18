@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
@@ -30,12 +31,16 @@ public class SecondFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         RadioGroup moodRadioGroup = view.findViewById(R.id.moodRadioGroup);
+        EditText noteEditText = view.findViewById(R.id.noteEditText);
         Button saveMoodButton = view.findViewById(R.id.saveMoodButton);
+
 
         saveMoodButton.setOnClickListener(v -> {
             int selectedId = moodRadioGroup.getCheckedRadioButtonId();
             String mood = "";
             String feedbackMessage = "";
+            String note = noteEditText.getText().toString();
+
 
 
             if (selectedId != -1) {
@@ -56,7 +61,7 @@ public class SecondFragment extends Fragment {
                 Toast.makeText(getContext(), feedbackMessage, Toast.LENGTH_SHORT).show();
 
 
-                MoodStore.addMood(mood);
+                MoodStore.addMood(mood, note);
 
 
                 NavHostFragment.findNavController(SecondFragment.this)

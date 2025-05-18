@@ -1,22 +1,28 @@
 package uk.ac.hope.mcse.android.coursework;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.util.Log;
+
 
 import java.util.ArrayList;
 import java.util.List;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
+import java.lang.reflect.Type;
 
 public class MoodStore {
 
     public static class MoodEntry {
         public String mood;
         public long timestamp;
+        public String note;
 
-        public MoodEntry(String mood, long timestamp) {
+        public MoodEntry(String mood, long timestamp, String note) {
             this.mood = mood;
             this.timestamp = timestamp;
+            this.note = note;
         }
 
         public String getFormattedDate() {
@@ -32,8 +38,8 @@ public class MoodStore {
 
     private static final List<MoodEntry> moodList = new ArrayList<>();
 
-    public static void addMood(String mood) {
-        MoodEntry entry = new MoodEntry(mood, System.currentTimeMillis());
+    public static void addMood(String mood, String note) {
+        MoodEntry entry = new MoodEntry(mood, System.currentTimeMillis(), note);
         moodList.add(0, entry);
         Log.d("MoodStore", "Saved: " + mood + " at " + entry.getFormattedTime());
     }
